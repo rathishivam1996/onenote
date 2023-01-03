@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/onenote/static/css/main.74c85a35.css",
+    "main.js": "/onenote/static/js/main.e41ff97d.js",
+    "static/js/787.8d3872a2.chunk.js": "/onenote/static/js/787.8d3872a2.chunk.js",
+    "index.html": "/onenote/index.html",
+    "main.74c85a35.css.map": "/onenote/static/css/main.74c85a35.css.map",
+    "main.e41ff97d.js.map": "/onenote/static/js/main.e41ff97d.js.map",
+    "787.8d3872a2.chunk.js.map": "/onenote/static/js/787.8d3872a2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.74c85a35.css",
+    "static/js/main.e41ff97d.js"
+  ]
+}
