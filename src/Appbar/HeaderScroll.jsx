@@ -1,6 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { MyTheme } from "../Theme/Theme";
+import React, { useState } from "react";
+import styled, { css, useTheme } from "styled-components";
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
+import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
+import ViewQuiltRoundedIcon from "@mui/icons-material/ViewQuiltRounded";
+import IconButton from "../IconButton/IconButton";
 import { useTranslate } from "../Utils/Hooks/hooks";
 import Pill from "../Pill/Pill";
 
@@ -14,8 +17,7 @@ const Container = styled.div`
   padding-right: 16px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
 
   background-color: ${(props) => props.theme.sys.dark.surface_dark};
@@ -29,13 +31,36 @@ const Container = styled.div`
 
 function HeaderScroll() {
   const [transformY] = useTranslate();
+  const [isListView, setIsListView] = useState(true);
+  const theme = useTheme();
+
+  const toggleListGridView = () => {
+    setIsListView(!isListView);
+  };
+  const sortIconButtonCss = css`
+    margin-left: auto;
+  `;
+  const listGridIconCss = css`
+    margin-right: -12px; ;
+  `;
 
   return (
-    <MyTheme>
-      <Container transformY={transformY}>
-        <Pill />
-      </Container>
-    </MyTheme>
+    <Container transformY={transformY}>
+      <Pill />
+      <IconButton
+        iconColor={theme.sys.dark.on_surface_dark}
+        sx={sortIconButtonCss}
+      >
+        <SortRoundedIcon />
+      </IconButton>
+      <IconButton
+        onClick={toggleListGridView}
+        iconColor={theme.sys.dark.on_surface_dark}
+        sx={listGridIconCss}
+      >
+        {isListView ? <ViewListRoundedIcon /> : <ViewQuiltRoundedIcon />}
+      </IconButton>
+    </Container>
   );
 }
 

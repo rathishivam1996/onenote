@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Appbar from "./Appbar/Appbar";
 import Content from "./Content/Content";
+import { MyTheme } from "./Theme/Theme";
 
 const Container = styled.div`
   /* root flex-direction : column; */
@@ -20,10 +21,12 @@ const Container = styled.div`
 
 function App() {
   return (
-    <Container>
-      <Appbar />
-      <Content />
-    </Container>
+    <MyTheme>
+      <Container>
+        <Appbar />
+        <Content />
+      </Container>
+    </MyTheme>
   );
 }
 

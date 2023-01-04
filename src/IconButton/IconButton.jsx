@@ -22,19 +22,21 @@ const Container = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 
   ${(props) => props.sx}
 `;
 
-function IconButton({ children, iconColor, sx }) {
+function IconButton({ onClick, children, iconColor = "default", sx }) {
   return (
-    <Container iconColor={iconColor} sx={sx}>
+    <Container onClick={onClick} iconColor={iconColor} sx={sx}>
       {children}
     </Container>
   );
 }
 
 IconButton.propTypes = {
+  onClick: PropTypes.func,
   children: PropTypes.node,
   iconColor: PropTypes.string,
   sx: PropTypes.arrayOf(PropTypes.string),

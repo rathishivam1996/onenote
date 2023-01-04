@@ -1,9 +1,8 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import IconButton from "../IconButton/IconButton";
-import { MyTheme, token } from "../Theme/Theme";
 import { Color, overlayOnSurface } from "../Theme/Color";
 import { useTranslate } from "../Utils/Hooks/hooks";
 
@@ -13,9 +12,9 @@ const Container = styled.div`
   position: fixed;
   top: 0px;
   left: 0;
+  z-index: 10;
   padding-left: 16px;
   padding-right: 16px;
-  z-index: 10;
   color: white;
 
   display: flex;
@@ -51,10 +50,13 @@ const Heading = styled.h1`
 function HeaderFixed() {
   const [translateY] = useTranslate();
   const surfaceColor = Object.create(Color);
-  surfaceColor.rgbaStrToRgba(token.surfaces.dark.surface2.surface);
+
+  const theme = useTheme();
+
+  surfaceColor.rgbaStrToRgba(theme.surfaces.dark.surface2.surface);
 
   const overlayColor = Object.create(Color);
-  overlayColor.rgbaStrToRgba(token.surfaces.dark.surface2.overlay);
+  overlayColor.rgbaStrToRgba(theme.surfaces.dark.surface2.overlay);
 
   const elevation2Color = overlayOnSurface(surfaceColor, overlayColor);
 
@@ -66,23 +68,21 @@ function HeaderFixed() {
     margin-right: -12px;
   `;
   return (
-    <MyTheme>
-      <Container elevationColor={elevation2Color} translateY={translateY}>
-        <IconButton
-          iconColor={token.sys.dark.on_surface_dark}
-          sx={menuIconButtonCss}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Heading>OneNote</Heading>
-        <IconButton
-          iconColor={token.sys.dark.on_surface_variant_dark}
-          sx={accountIconButtonCss}
-        >
-          <AccountCircleRoundedIcon sx={{ fontSize: "30px" }} />
-        </IconButton>
-      </Container>
-    </MyTheme>
+    <Container elevationColor={elevation2Color} translateY={translateY}>
+      <IconButton
+        iconColor={theme.sys.dark.on_surface_dark}
+        sx={menuIconButtonCss}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Heading>OneNote</Heading>
+      <IconButton
+        iconColor={theme.sys.dark.on_surface_variant_dark}
+        sx={accountIconButtonCss}
+      >
+        <AccountCircleRoundedIcon sx={{ fontSize: "30px" }} />
+      </IconButton>
+    </Container>
   );
 }
 

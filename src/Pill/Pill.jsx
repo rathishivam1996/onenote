@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { MyTheme } from "../Theme/Theme";
 
 const PillContainer = styled.span`
   position: relative;
-  align-self: flex-start;
   width: auto;
   height: auto;
   border-radius: 24px;
@@ -20,6 +18,7 @@ const PillContainer = styled.span`
 
 const HomeTypography = styled.div`
   position: relative;
+  height: 26px;
   width: 39px;
   display: flex;
   justify-content: center;
@@ -49,7 +48,7 @@ const NotebooksTypography = styled(HomeTypography)`
 const PillSmall = styled.span`
   position: absolute;
   left: 69px;
-  height: 20px;
+  height: 26px;
   width: 98px;
   border-radius: 20px;
   background-color: ${(props) => props.theme.sys.dark.surface_dark};
@@ -70,20 +69,18 @@ function Pill() {
   };
 
   return (
-    <MyTheme>
-      <PillContainer>
-        <PillSmall isHome={isHome} />
-        <HomeTypography onClick={() => setPillHome()} isHome={isHome}>
-          Home
-        </HomeTypography>
-        <NotebooksTypography
-          onClick={() => setPillSmallNotebooks()}
-          isHome={isHome}
-        >
-          Notebooks
-        </NotebooksTypography>
-      </PillContainer>
-    </MyTheme>
+    <PillContainer>
+      <PillSmall isHome={isHome} />
+      <HomeTypography onClick={() => setPillHome()} isHome={isHome}>
+        Home
+      </HomeTypography>
+      <NotebooksTypography
+        onClick={() => setPillSmallNotebooks()}
+        isHome={isHome}
+      >
+        Notebooks
+      </NotebooksTypography>
+    </PillContainer>
   );
 }
 
