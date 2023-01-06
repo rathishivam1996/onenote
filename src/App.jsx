@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Appbar from "./Appbar/Appbar";
+import BottomBar from "./BottomBar/BottomBar";
 import Content from "./Content/Content";
 import { MyTheme } from "./Theme/Theme";
+// import Test from "./Test";
 
 const Container = styled.div`
   /* root flex-direction : column; */
@@ -25,7 +27,9 @@ function App() {
       <Container>
         <Appbar />
         <Content />
+        <BottomBar />
       </Container>
+      {/* <Test /> */}
     </MyTheme>
   );
 }

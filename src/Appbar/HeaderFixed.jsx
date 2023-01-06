@@ -21,10 +21,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
 
-  background-color: ${(props) =>
-    props.translateY === -64
-      ? props.elevationColor
-      : props.theme.sys.dark.surface_dark};
+  background-color: ${(props) => props.elevationColor};
   box-shadow: ${(props) =>
     props.translateY === -64
       ? `${props.theme.elevation.shadow_map["2"].key} ${props.theme.sys.dark.shadow_dark}, ${props.theme.elevation.shadow_map["2"].ambient} ${props.theme.sys.dark.shadow_dark}`
@@ -49,16 +46,15 @@ const Heading = styled.h1`
 
 function HeaderFixed() {
   const [translateY] = useTranslate();
-  const surfaceColor = Object.create(Color);
-
   const theme = useTheme();
 
-  surfaceColor.rgbaStrToRgba(theme.surfaces.dark.surface2.surface);
+  const surfaceColor = Object.create(Color);
+  surfaceColor.fromRgba(theme.surfaces.dark.surface2.surface);
 
   const overlayColor = Object.create(Color);
-  overlayColor.rgbaStrToRgba(theme.surfaces.dark.surface2.overlay);
+  overlayColor.fromRgba(theme.surfaces.dark.surface2.overlay);
 
-  const elevation2Color = overlayOnSurface(surfaceColor, overlayColor);
+  const elevationColor = overlayOnSurface(surfaceColor, overlayColor).toRgba();
 
   const menuIconButtonCss = css`
     margin-left: -12px;
@@ -68,7 +64,7 @@ function HeaderFixed() {
     margin-right: -12px;
   `;
   return (
-    <Container elevationColor={elevation2Color} translateY={translateY}>
+    <Container elevationColor={elevationColor} translateY={translateY}>
       <IconButton
         iconColor={theme.sys.dark.on_surface_dark}
         sx={menuIconButtonCss}

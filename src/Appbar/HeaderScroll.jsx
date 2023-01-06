@@ -12,7 +12,7 @@ const Container = styled.div`
   height: 64px;
   position: fixed;
   top: 64px;
-  z-index: 0;
+  z-index: 5;
   padding-left: 16px;
   padding-right: 16px;
 
